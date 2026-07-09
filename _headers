@@ -3,3 +3,9 @@
 
 /screenshots/*
   Cache-Control: public, max-age=31536000, immutable
+
+/status.json
+  Cache-Control: no-store
+
+/status.html
+  Cache-Control: no-store
