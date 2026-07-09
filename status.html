@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Status — MenuGallery</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F4F4F2">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<style>
+.legal .status-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.legal .status-dot {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  margin-top: 0.45rem;
+  flex: none;
+}
+.legal .status-dot.is-up {
+  background: #3F8F5F;
+  animation: status-pulse 2s var(--ease-out) infinite;
+}
+.legal .status-dot.is-down {
+  background: var(--accent);
+}
+@keyframes status-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(63, 143, 95, 0.35); }
+  70%  { box-shadow: 0 0 0 0.6rem rgba(63, 143, 95, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(63, 143, 95, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .legal .status-dot.is-up { animation: none; }
+}
+.legal .status-headline {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin: 0;
+}
+.legal .status-message {
+  margin: 0.35rem 0 0;
+}
+.legal .status-checked {
+  margin: 0.35rem 0 0;
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+</style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="legal-header">
+    <div class="container">
+      <a href="/" class="brand">Menu<span class="wordmark-accent">Gallery</span></a>
+    </div>
+  </header>
+  <article class="legal">
+    <p class="eyebrow">MenuGallery</p>
+    <h1>Status</h1>
+    <div class="status-card" id="status-live" role="status">
+      <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+      <div>
+        <p class="status-headline" id="status-headline">Checking status…</p>
+        <p class="status-message" id="status-message"></p>
+        <p class="status-checked" id="status-checked"></p>
+      </div>
+    </div>
+    <noscript>
+      <style>#status-live { display: none; }</style>
+      <div class="status-card">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div>
+          <p class="status-headline">Status information is temporarily unavailable</p>
+        </div>
+      </div>
+    </noscript>
+    <p>The MenuGallery app reads this status from <a href="/status.json">/status.json</a>.</p>
+  </article>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span class="brand">Menu<span class="wordmark-accent">Gallery</span></span>
+      <span class="footer-note">Photograph a menu, see the dishes.</span>
+      <nav class="footer-nav">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+      </nav>
+      <span class="footer-note">© 2026 MenuGallery</span>
+    </div>
+  </footer>
+  <script>
+  (function () {
+    var dot = document.getElementById('status-dot');
+    var headline = document.getElementById('status-headline');
+    var message = document.getElementById('status-message');
+    var checked = document.getElementById('status-checked');
+    function fallback() {
+      dot.className = 'status-dot';
+      headline.textContent = 'Status information is temporarily unavailable';
+      message.textContent = '';
+      checked.textContent = '';
+    }
+    fetch('/status.json', { cache: 'no-store' })
+      .then(function (res) {
+        if (!res.ok) { throw new Error('HTTP ' + res.status); }
+        return res.json();
+      })
+      .then(function (data) {
+        var up = data.status === 'up';
+        dot.className = 'status-dot ' + (up ? 'is-up' : 'is-down');
+        headline.textContent = up ? 'All systems operational' : 'Service disruption';
+        message.textContent = data.message || '';
+        checked.textContent = 'Checked just now — ' +
+          new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      })
+      .catch(fallback);
+  })();
+  </script>
+</body>
+</html>
