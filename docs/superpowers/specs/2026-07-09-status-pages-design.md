@@ -53,7 +53,12 @@ Add no-cache rules so the app and browsers never act on a stale "up":
 
 /status.html
   Cache-Control: no-store
+
+/status
+  Cache-Control: no-store
 ```
+
+The `/status` rule covers the extensionless pretty URL the host actually serves `status.html` at; `_headers` rules match the request path, not the file name.
 
 ## Error handling
 

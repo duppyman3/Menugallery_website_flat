@@ -9,3 +9,7 @@
 
 /status.html
   Cache-Control: no-store
+
+/status
+  Cache-Control: no-store
+
