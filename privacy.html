@@ -39,13 +39,13 @@
   <article class="legal">
     <p class="eyebrow">MenuGallery — Legal</p>
     <h1>Privacy Policy</h1>
-    <p class="legal-meta"><span>Last updated</span><span class="dot-leader" aria-hidden="true"></span><span>July 8, 2026</span></p>
+    <p class="legal-meta"><span>Last updated</span><span class="dot-leader" aria-hidden="true"></span><span>July 10, 2026</span></p>
 
     <p class="legal-intro">
       MenuGallery (“we,” “us,” or “our”) makes the MenuGallery mobile app, which reads a printed menu from a photo you take and shows you the dishes with illustrative images and estimated nutrition. This Privacy Policy explains what the app does — and, just as importantly, what it does not do — with your information. It covers the MenuGallery mobile app only.
     </p>
     <p>
-      The short version: <strong>the app has no accounts and no logins, shows no ads, and does not track you across other apps or websites</strong>. When you photograph a menu, your photo is sent securely to be read by an AI service and then discarded — <strong>we never store it on our servers</strong>. Everything the app makes from that photo — the dish list, the estimated nutrition, and the generated images — <strong>lives on your device, under your control</strong>.
+      The short version: <strong>the app has no accounts and no logins, shows no ads, and does not track you across other apps or websites</strong>. When you photograph a menu, your photo is sent securely to be read by an AI service and then discarded — <strong>we never store it on our servers</strong>. Your saved scans — the full dish list, prices, estimated nutrition, and the generated images — <strong>live on your device, under your control</strong>; on our servers we keep only the extracted dish names and descriptions, anonymous usage tallies, and basic anonymous product analytics.
     </p>
     <p>
       If you have questions about this policy or your data, email us at <a href="mailto:info@menugallery.app">info@menugallery.app</a>.
@@ -60,7 +60,7 @@
         <strong>Menu photos.</strong> When you choose to scan a menu, the app uses your device camera to take a photo. <strong>The app only uses the camera — it never accesses your photo library or your existing pictures.</strong> The image is resized on your device and sent securely to be read by an AI service. <strong>We do not store your menu photos on our servers;</strong> they are processed to extract the menu and then discarded.
       </li>
       <li>
-        <strong>Extracted menu content and nutrition estimates.</strong> The dish names, descriptions, prices, and the estimated calories, carbohydrates, and protein that the app produces from your photo are <strong>saved only on your device</strong>, not on our servers.
+        <strong>Extracted menu content and nutrition estimates.</strong> The full results the app produces from your photo — dish names, descriptions, prices, and the estimated calories, carbohydrates, and protein — are <strong>saved on your device</strong>. Our servers also keep a copy of the <strong>dish names and their short visual descriptions</strong> (never your photo, and no prices or nutrition data), linked only to the anonymous identifier described below, to operate the service and prevent abuse.
       </li>
       <li>
         <strong>Generated dish images.</strong> The illustrative images the app creates for each dish are <strong>stored only on your device.</strong>
@@ -71,6 +71,9 @@
       <li>
         <strong>Usage counters.</strong> On our backend we keep a simple daily tally — a date and the number of scans and image generations associated with that anonymous identifier. <strong>These counters exist only to enforce fair-use limits and prevent abuse; they contain no personal information and no menu content.</strong>
       </li>
+      <li>
+        <strong>Anonymous product analytics.</strong> The app records basic product events — for example, that a scan started, completed, or failed — using PostHog, tied to the same anonymous identifier. These events help us understand which features work and where the app breaks. <strong>They are not used for advertising, and they do not track you across other apps or websites.</strong>
+      </li>
     </ul>
     <p>
       We built MenuGallery to need as little as possible. The app does <strong>not</strong> collect or have access to any of the following:
@@ -80,7 +83,7 @@
       <li>Your location;</li>
       <li>Your contacts or your photo library;</li>
       <li>Advertising identifiers — <strong>the app shows no ads</strong>;</li>
-      <li>Analytics, telemetry, or crash-reporting data;</li>
+      <li>Crash-reporting data;</li>
       <li>Payment or financial information — <strong>the app has no purchases or subscriptions.</strong></li>
     </ul>
 
@@ -91,7 +94,8 @@
     <ul>
       <li>To read the menu in your photo and extract its dishes, prices, and details;</li>
       <li>To generate an illustrative image for each dish;</li>
-      <li>To enforce fair-use limits and prevent abuse of the service.</li>
+      <li>To enforce fair-use limits and prevent abuse of the service;</li>
+      <li>To understand, through anonymous analytics, how the app's features are used and where they fail, so we can improve them.</li>
     </ul>
     <p>
       We do nothing else with it. Specifically, <strong>we do not sell your information, we do not use it for advertising or profiling, and we do not build a profile of you.</strong> Your photos and menu content are sent to our AI providers only so they can return the results you asked for; <strong>our AI providers process it solely to return those results and not to train their models</strong>, in accordance with their API terms.
@@ -114,18 +118,21 @@
 
     <h2>4. Third-Party Service Providers</h2>
     <p>
-      To run the app we rely on two service providers, and only two:
+      To run the app we rely on three service providers, and only three:
     </p>
     <ul>
       <li>
-        <strong>Supabase</strong> hosts our backend and the small database of anonymous usage counters. You can read Supabase’s privacy policy at <a href="https://supabase.com/privacy">https://supabase.com/privacy</a>.
+        <strong>Supabase</strong> hosts our backend and the small database of anonymous usage counters and extracted dish text. You can read Supabase’s privacy policy at <a href="https://supabase.com/privacy">https://supabase.com/privacy</a>.
       </li>
       <li>
         <strong>OpenRouter</strong> routes menu-reading and image requests to AI model providers (such as OpenAI-family models). You can read OpenRouter’s privacy policy at <a href="https://openrouter.ai/privacy">https://openrouter.ai/privacy</a>.
       </li>
+      <li>
+        <strong>PostHog</strong> processes our anonymous product analytics. You can read PostHog’s privacy policy at <a href="https://posthog.com/privacy">https://posthog.com/privacy</a>.
+      </li>
     </ul>
     <p>
-      These providers process data only on our behalf and to provide their service to us, and they are required to protect it to at least the standard described in this policy. <strong>We share your information with no one else</strong> — there are no advertisers, data brokers, or analytics companies involved.
+      These providers process data only on our behalf and to provide their service to us, and they are required to protect it to at least the standard described in this policy. <strong>We share your information with no one else</strong> — there are no advertisers or data brokers involved.
     </p>
 
     <h2>5. Data Retention and Deletion</h2>
@@ -137,7 +144,7 @@
       <li><strong>Uninstalling the app removes all of its data from your device.</strong></li>
     </ul>
     <p>
-      On our servers, the only thing we retain is the anonymous usage counters described above. <strong>These records contain no personal information and no menu content</strong>, and we keep them as operational records for running the service. Because they are tied only to a random identifier, they generally cannot be connected to you as a person.
+      On our servers, we retain the anonymous usage counters, the extracted dish names and descriptions, and the anonymous analytics events described above. <strong>These records contain no personal information and no photos</strong>, and we keep them as operational records for running the service. Because they are tied only to a random identifier, they generally cannot be connected to you as a person.
     </p>
     <p>
       If you would like to make a deletion request, email us at <a href="mailto:info@menugallery.app">info@menugallery.app</a> and we will help where we can, bearing in mind that anonymous records usually cannot be matched to a specific individual.
